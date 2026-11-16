@@ -1,7 +1,7 @@
 ---
 title: "Desagregação de Séries Temporais"
 subtitle: "***Uma abordagem introdutória***"
-author: <a href="https://rhozon.github.io/selecaodeprodutosnor/index.html">Rodrigo Hermont Ozon</a>
+author: <a href="https://rhozon.github.io/tutoriais/index.html">Rodrigo Hermont Ozon</a>
 title-slide-attributes:
     data-background-image: "https://raw.githubusercontent.com/rhozon/Doutorado/main/background_rday.png"
     data-background-size: contain
@@ -461,7 +461,7 @@ $\Rightarrow$ Agradecimentos aos pesquisadores do [PPGEPS/PUCPR](https://www.puc
 
 - Meu perfil no [Google Scholar](https://scholar.google.com/citations?user=hPcIR9oAAAAJ&hl=en)
 - Meu [CV Lattes](http://lattes.cnpq.br/3532649625879285)
-- Meu [site com posts, tutoriais e artigos](https://rhozon.github.io/selecaodeprodutosnor/index.html) 
+- Meu [site com posts, tutoriais e artigos](https://rhozon.github.io/tutoriais/index.html) 
 - Meu [perfil no LinkeDin](https://www.linkedin.com/in/rodrigohermontozon/)
 
 :::

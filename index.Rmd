@@ -155,41 +155,41 @@ Tutoriais disponíveis:
 
 ------------------------------------------------------------------------
 
-+ [Econometrics tutoring, Shangai University -- Wooldridge exercises I](https://rhozon.github.io/selecaodeprodutosnor/homeworkI.html)
++ [Econometrics tutoring, Shangai University -- Wooldridge exercises I](https://rhozon.github.io/tutoriais/homeworkI.html)
  
 
 ### *Homework II: Econometrics (Shangai University of Finance)*
 
 ------------------------------------------------------------------------
 
-+ [Econometrics tutoring, Shangai University -- Wooldridge exercises II](https://rhozon.github.io/selecaodeprodutosnor/problemset2.html)
++ [Econometrics tutoring, Shangai University -- Wooldridge exercises II](https://rhozon.github.io/tutoriais/problemset2.html)
 
 ### *Análise preliminar do Índice de Inclusão Financeira no Brasil vs variáveis de política monetária*
 
 ------------------------------------------------------------------------
 
-- [Exercício de auxílio à pesquisa de Felipe Stringari, mestrado em Finanças da Univ. Shangai](https://rhozon.github.io/selecaodeprodutosnor/anpreliminar.html)
+- [Exercício de auxílio à pesquisa de Felipe Stringari, mestrado em Finanças da Univ. Shangai](https://rhozon.github.io/tutoriais/anpreliminar.html)
 
 
 ### *Análise de Intervenção em Séries Temporais: o uso do algoritmo do Google `CausalImpact`*
 
 ------------------------------------------------------------------------
 
-- [Qual o impacto de uma fraude nos sistemas catalizadores dos carros (escândalo DieselGate) da Volks e seu valor de mercado (preços de ações) ?](https://rhozon.github.io/selecaodeprodutosnor/causalimpact.html) 
+- [Qual o impacto de uma fraude nos sistemas catalizadores dos carros (escândalo DieselGate) da Volks e seu valor de mercado (preços de ações) ?](https://rhozon.github.io/tutoriais/causalimpact.html) 
 
 
 ### *Modelos de Deep Learning em Séries Temporais de preços de commodities (milho)*
 
 ------------------------------------------------------------------------
 
-- [Exemplo de aplicação de modelo NBEATS-Ensemble para séries temporais de retornos com GluonTS dentro do R](https://rhozon.github.io/selecaodeprodutosnor/modelo_deep_learning_series_temporais.html)
+- [Exemplo de aplicação de modelo NBEATS-Ensemble para séries temporais de retornos com GluonTS dentro do R](https://rhozon.github.io/tutoriais/modelo_deep_learning_series_temporais.html)
  
 
 ### *ETL usando R direto no Power BI*
 
 ------------------------------------------------------------------------
 
-- [Um exemplo simples de extração de dados via API do Yahoo!Finances direto via R e visualizando no PwBI](https://rhozon.github.io/selecaodeprodutosnor/ETL_R_no_PowerBI.html)
+- [Um exemplo simples de extração de dados via API do Yahoo!Finances direto via R e visualizando no PwBI](https://rhozon.github.io/tutoriais/ETL_R_no_PowerBI.html)
  
 
 ### *Modelo Bayesiano normal-normal Monte Carlo Markov Chain para estimativa das elasticidades de consumo*
@@ -197,34 +197,34 @@ Tutoriais disponíveis:
 ------------------------------------------------------------------------
 
 
-- [Exemplo de aplicação com o exemplo de Gujarati, demonstrando as diferenças entre abordagem frequentista x bayesiana na econometria](https://rhozon.github.io/selecaodeprodutosnor/Modelo_Bayesiano_Monte_Carlo_Markov_Chain_Elasticidades.html)
+- [Exemplo de aplicação com o exemplo de Gujarati, demonstrando as diferenças entre abordagem frequentista x bayesiana na econometria](https://rhozon.github.io/tutoriais/Modelo_Bayesiano_Monte_Carlo_Markov_Chain_Elasticidades.html)
 
 ### *AAS Algoritmos para Ciência de Dados*
 
--   [Atividade de Sistematização da Disciplina Algoritmos para Ciência de Dados](https://rhozon.github.io/selecaodeprodutosnor/AAS_Algo_CiencDados_Cruzeiro.html)
+-   [Atividade de Sistematização da Disciplina Algoritmos para Ciência de Dados](https://rhozon.github.io/tutoriais/AAS_Algo_CiencDados_Cruzeiro.html)
 
  
 
 ### *Aplicação de GARCH Bayesiano em séries de retornos de preços de commodities*
 
-- [Pequeno exemplo de aplicação de GARCH Bayesiano em séries de retornos de preços de commodities](https://rhozon.github.io/selecaodeprodutosnor/GARCH_Bayesiano.html)
+- [Pequeno exemplo de aplicação de GARCH Bayesiano em séries de retornos de preços de commodities](https://rhozon.github.io/tutoriais/GARCH_Bayesiano.html)
 
 ### *Otimização MultiObjetivo de portfolio de commodities*
 
-- [Exemplo introdutório de otimização multiobjetivo com algo NSGA-II](https://rhozon.github.io/selecaodeprodutosnor/optim_multiobjective.html)
+- [Exemplo introdutório de otimização multiobjetivo com algo NSGA-II](https://rhozon.github.io/tutoriais/optim_multiobjective.html)
 
-- [Otimização MultiObjetivo para um portfólio de fundos e commodities](https://rhozon.github.io/selecaodeprodutosnor/optim_multiobj_portfolio.html)
+- [Otimização MultiObjetivo para um portfólio de fundos e commodities](https://rhozon.github.io/tutoriais/optim_multiobj_portfolio.html)
 
 - Algoritmo de Otimização de Evolução Diferencial MultiObjetivo para um portfólio de ações
 
-- [Seleção de Portfólio Multicritério com NSGAII](https://rhozon.github.io/selecaodeprodutosnor/Multicriteria_Portfolio_Selection_Commodities.html)
+- [Seleção de Portfólio Multicritério com NSGAII](https://rhozon.github.io/tutoriais/Multicriteria_Portfolio_Selection_Commodities.html)
 
 - Exercício de replicação de otimização com abordagem multicritério com NSGAII para um portfólio de commodities e diversificado.
 
 
 ### *R and Python in the same script using Quarto*
 
-- [R + Python example](https://rhozon.github.io/selecaodeprodutosnor/Multicriteria_Portfolio_Selection_Commodities.html)
+- [R + Python example](https://rhozon.github.io/tutoriais/Multicriteria_Portfolio_Selection_Commodities.html)
 
 
 ### *Exemplo de exposição de uma proposta de pesquisa acadêmica*
@@ -233,36 +233,36 @@ Tutoriais disponíveis:
 
 ### *Apresentação Econometria no CiDAMO*
 
-- [CiDAMO -- Econometria e Inferência Causal, o que é econometria e sua importância](https://rhozon.github.io/selecaodeprodutosnor/Apresentacao_Econometria_CiDAMO_Rodrigo_H_Ozon.html#/title-slide)
+- [CiDAMO -- Econometria e Inferência Causal, o que é econometria e sua importância](https://rhozon.github.io/tutoriais/Apresentacao_Econometria_CiDAMO_Rodrigo_H_Ozon.html#/title-slide)
 
 ### *Apresentação Desagregação de Séries Temporais*
 
-- [Veja a apresentação que utilizei pra demonstrar pros participantes do 4º R Day sobre como desagregar séries temporais](https://rhozon.github.io/selecaodeprodutosnor/Apresentacao_DesagregacaoSeriesTemporais.html#/title-slide) 
+- [Veja a apresentação que utilizei pra demonstrar pros participantes do 4º R Day sobre como desagregar séries temporais](https://rhozon.github.io/tutoriais/Apresentacao_DesagregacaoSeriesTemporais.html#/title-slide) 
 
  - Visite o site do evento em [4º R Day](http://rday.leg.ufpr.br/#)
 
 ### *Apresentação sobre o algoritmo NSGAII*
 
-- [Leia a apresentação que fiz na disciplina de Inteligência Computacional no PPGEPS/UTFPR](https://rhozon.github.io/selecaodeprodutosnor/NSGAII_Rodrigo_Hermont_Ozon.html#/title-slide)
+- [Leia a apresentação que fiz na disciplina de Inteligência Computacional no PPGEPS/UTFPR](https://rhozon.github.io/tutoriais/NSGAII_Rodrigo_Hermont_Ozon.html#/title-slide)
 
 
 ### *Algoritmos Genéticos x Força Bruta para a seleção de modelos de regressão*
 
-- [Veja aqui a apresentação sobre o paper de referência](https://rhozon.github.io/selecaodeprodutosnor/AlgoGeneticos_selecaovariaveis_RegressaoEconometria.html#/title-slide)
+- [Veja aqui a apresentação sobre o paper de referência](https://rhozon.github.io/tutoriais/AlgoGeneticos_selecaovariaveis_RegressaoEconometria.html#/title-slide)
 
-- [Acompanhe aqui o case explicativo](https://rhozon.github.io/selecaodeprodutosnor/AlgoGenxForcaBruta_modelselection.html)
+- [Acompanhe aqui o case explicativo](https://rhozon.github.io/tutoriais/AlgoGenxForcaBruta_modelselection.html)
 
 ### *Lectures -- Machine Learning class, exercises -- PUCPR PhD at PPGEPS*
 
-- [Follow the link here for the Lesson 02](https://rhozon.github.io/selecaodeprodutosnor/Lesson02.html)
+- [Follow the link here for the Lesson 02](https://rhozon.github.io/tutoriais/Lesson02.html)
 
-- [Follow the link here for the Lesson 03](https://rhozon.github.io/selecaodeprodutosnor/Lesson03.html)
+- [Follow the link here for the Lesson 03](https://rhozon.github.io/tutoriais/Lesson03.html)
 
-- [Follow the link here for the Lesson 04](https://rhozon.github.io/selecaodeprodutosnor/Lesson04.html)
+- [Follow the link here for the Lesson 04](https://rhozon.github.io/tutoriais/Lesson04.html)
 
-- [Follow the link here for the Lesson 05](https://rhozon.github.io/selecaodeprodutosnor/Lesson05.html)
+- [Follow the link here for the Lesson 05](https://rhozon.github.io/tutoriais/Lesson05.html)
 
-- [Follow the link here for the Lesson 06](https://rhozon.github.io/selecaodeprodutosnor/Lesson06.html)
+- [Follow the link here for the Lesson 06](https://rhozon.github.io/tutoriais/Lesson06.html)
 
 ![](C:/Users/Rodrigo/Desktop/AnaliseConjunta/selecaodeprodutosnor/econnerd.png){width="40%"}
 

@@ -756,7 +756,7 @@ Em que se supõe que os termos de erro $u_{1t}$ e $u_{2t}$ não estejam correlac
 <li><p><em>Feedback, ou causalidade bilateral,</em> será sugerido quando os conjuntos de coeficientes de M e PIB forem estatisticamente diferentes de zero em ambas as regressões.</p></li>
 <li><p>Por fim, a independência será sugerida quando os conjuntos de coeficientes de M e PIB não forem estatisticamente significativos em nenhuma das regressões.</p></li>
 </ol>
-<p>Você pode encontrar um maior detalhamento <a href="https://rhozon.github.io/selecaodeprodutosnor/inferenciacausal.html">de modelagem econométrica utilizando Inferência Causal aqui</a> ou então nas <a href="https://book4you.org/s/Causal%20Inference">literaturas recomendadas</a></p>
+<p>Você pode encontrar um maior detalhamento <a href="https://rhozon.github.io/tutoriais/inferenciacausal.html">de modelagem econométrica utilizando Inferência Causal aqui</a> ou então nas <a href="https://book4you.org/s/Causal%20Inference">literaturas recomendadas</a></p>
 <pre class="r"><code># Os preços (Granger) causam o volume ?
 
 grangertest(CORN[,&quot;CORN.Volume&quot;] ~ CORN[,&quot;CORN.Close&quot;], order=4)</code></pre>

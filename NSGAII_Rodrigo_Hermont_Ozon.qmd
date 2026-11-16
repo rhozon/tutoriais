@@ -1,7 +1,7 @@
 ---
 title: "O algoritmo Non-dominated Sorting Genetic Algorithm II (NSGA-II)"
 subtitle: "***Métodos Heurísticos Populacionais***"
-author: <a href="https://rhozon.github.io/selecaodeprodutosnor/index.html">Rodrigo Hermont Ozon</a>
+author: <a href="https://rhozon.github.io/tutoriais/index.html">Rodrigo Hermont Ozon</a>
 title-slide-attributes:
     data-background-image: "https://raw.githubusercontent.com/rhozon/Doutorado/main/background_UTFPR.png"
     data-background-size: contain
@@ -298,13 +298,13 @@ knitr::opts_chunk$set(message = FALSE) # Remove all messages # of R outputs
 
 <font size = 4px>
 
-- [Seleção Multicritério de Portfólio de Commodities com NSGAII](https://rhozon.github.io/selecaodeprodutosnor/Multicriteria_Portfolio_Selection_Commodities.html) Aqui utilizo visualização 3d da frente de Pareto com 3 objetivos...
+- [Seleção Multicritério de Portfólio de Commodities com NSGAII](https://rhozon.github.io/tutoriais/Multicriteria_Portfolio_Selection_Commodities.html) Aqui utilizo visualização 3d da frente de Pareto com 3 objetivos...
 
-- [Otimização MultiObjetivo de Portfólio com muitas restrições](https://rhozon.github.io/selecaodeprodutosnor/optim_multiobj_portfolio.html)
+- [Otimização MultiObjetivo de Portfólio com muitas restrições](https://rhozon.github.io/tutoriais/optim_multiobj_portfolio.html)
 
-- [Otimização MultiObjetivo de Portfólio usando Evolução Diferencial otimização não-convexa](https://rhozon.github.io/selecaodeprodutosnor/Differential_Optimization_Portfolio.html)
+- [Otimização MultiObjetivo de Portfólio usando Evolução Diferencial otimização não-convexa](https://rhozon.github.io/tutoriais/Differential_Optimization_Portfolio.html)
 
-- [Otimização Multiobjetivo: Exercício teórico e aplicação em portfolio de commodities](https://rhozon.github.io/selecaodeprodutosnor/optim_multiobjective.html) aqui utilizo um NSGAII para fazer a seleção de portfólio
+- [Otimização Multiobjetivo: Exercício teórico e aplicação em portfolio de commodities](https://rhozon.github.io/tutoriais/optim_multiobjective.html) aqui utilizo um NSGAII para fazer a seleção de portfólio
 
 </font>
 
@@ -379,7 +379,7 @@ $\Rightarrow$ Agradecimentos aos pesquisadores do [PPGEPS/PUCPR](https://www.puc
 
 - Meu perfil no [Google Scholar](https://scholar.google.com/citations?user=hPcIR9oAAAAJ&hl=en)
 - Meu [CV Lattes](http://lattes.cnpq.br/3532649625879285)
-- Meu [site com posts, tutoriais e artigos](https://rhozon.github.io/selecaodeprodutosnor/index.html) 
+- Meu [site com posts, tutoriais e artigos](https://rhozon.github.io/tutoriais/index.html) 
 - Meu [perfil no LinkeDin](https://www.linkedin.com/in/rodrigohermontozon/)
 
 :::

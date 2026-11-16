@@ -1,2 +1,3 @@
-# selecaodeprodutosnor
-Selecao de Produtos mais vendaveis com analise conjunta no R
+# Tutoriais
+
+Site: https://rhozon.github.io/tutoriais/

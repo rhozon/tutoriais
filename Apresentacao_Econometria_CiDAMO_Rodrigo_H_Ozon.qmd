@@ -1,7 +1,7 @@
 ---
 title: "Seleção e otimização de portfólio de _commodities_ em condições de incerteza:"
 subtitle: "***Econometria de Séries Temporais e Otimização MultiObjetivo Multiperíodo***"
-author: <a href="https://rhozon.github.io/selecaodeprodutosnor/index.html">Rodrigo Hermont Ozon</a>
+author: <a href="https://rhozon.github.io/tutoriais/index.html">Rodrigo Hermont Ozon</a>
 title-slide-attributes:
     data-background-image: "https://raw.githubusercontent.com/rhozon/Doutorado/main/cidamo_background_img.png"
     data-background-size: contain
@@ -226,7 +226,7 @@ Fonte: [FGV (2010)](https://www.cps.fgv.br/cps/pesquisas/Politicas_sociais_aluno
 
 <font size = 5px>
 
-[Em séries temporais vide p .ex. o teste de causalidade de Granger (precedência):](https://rhozon.github.io/selecaodeprodutosnor/fcast.html)
+[Em séries temporais vide p .ex. o teste de causalidade de Granger (precedência):](https://rhozon.github.io/tutoriais/fcast.html)
 
 </font>
 
@@ -262,7 +262,7 @@ Alguns métodos de regressão muito comuns em inferência causal na econometria:
 
 - _Propensity Score Matching_ $\Rightarrow$ É um método causal utilizado na econometria para estimar o efeito causal de um tratamento ou intervenção em relação a um grupo de controle. Ele baseia-se na construção do escore de propensão, que é a probabilidade de um indivíduo receber o tratamento com base em suas características observáveis.
 
-- Análise de Intervenção em Séries Temporais $\Rightarrow$ Esse método busca identificar a mudança na série temporal após a introdução de uma intervenção, controlando fatores externos que poderiam influenciar a variável de interesse. Um exemplo popular de algoritmo que implementa esse método é o Google CausalImpact. O Google CausalImpact utiliza um modelo de espaço de estado Bayesianos para modelar a série temporal antes da intervenção e estima a contrafactual (o que teria acontecido sem a intervenção) após a intervenção. Ele calcula uma métrica chamada "Impacto Causal" que mede a diferença entre o valor observado e o valor contrafactual para determinar o efeito causal da intervenção. Esse método permite uma análise rigorosa do efeito causal de uma intervenção em uma série temporal, controlando o efeito de fatores não relacionados à intervenção. [(vide um artigo sobre esse tema aqui)](https://rhozon.github.io/selecaodeprodutosnor/causalimpact.html)
+- Análise de Intervenção em Séries Temporais $\Rightarrow$ Esse método busca identificar a mudança na série temporal após a introdução de uma intervenção, controlando fatores externos que poderiam influenciar a variável de interesse. Um exemplo popular de algoritmo que implementa esse método é o Google CausalImpact. O Google CausalImpact utiliza um modelo de espaço de estado Bayesianos para modelar a série temporal antes da intervenção e estima a contrafactual (o que teria acontecido sem a intervenção) após a intervenção. Ele calcula uma métrica chamada "Impacto Causal" que mede a diferença entre o valor observado e o valor contrafactual para determinar o efeito causal da intervenção. Esse método permite uma análise rigorosa do efeito causal de uma intervenção em uma série temporal, controlando o efeito de fatores não relacionados à intervenção. [(vide um artigo sobre esse tema aqui)](https://rhozon.github.io/tutoriais/causalimpact.html)
 
 - [Curso de Inferência Causal no coursera (Columbia University)](https://www.coursera.org/learn/causal-inference) no [codeacademy](https://www.codecademy.com/learn/learn-the-basics-of-causal-inference-with-r/modules/causal-inference-course-welcome) no [datacamp](https://campus.datacamp.com/courses/causal-inference-with-r-experiments/introduction-5b0e1f6d-49d9-4009-939a-7ffd05141448?ex=1) ...
 
@@ -627,15 +627,15 @@ milho
 
 <font size = 5>
 
- - [Aplicação dos modelos ARCH pra VALE x Brumadinho](https://rhozon.github.io/selecaodeprodutosnor/cotacoes.html)
+ - [Aplicação dos modelos ARCH pra VALE x Brumadinho](https://rhozon.github.io/tutoriais/cotacoes.html)
 
- - [Time Series Intervention: Causal Impact estimatives](https://rhozon.github.io/selecaodeprodutosnor/causalimpact.html)
+ - [Time Series Intervention: Causal Impact estimatives](https://rhozon.github.io/tutoriais/causalimpact.html)
 
- - [Otimização Multiobjetivo: Exercício teórico e aplicação em portfolio de commodities](https://rhozon.github.io/selecaodeprodutosnor/optim_multiobjective.html#Roda_o_algoritmo_de_otimiza%C3%A7%C3%A3o) 
+ - [Otimização Multiobjetivo: Exercício teórico e aplicação em portfolio de commodities](https://rhozon.github.io/tutoriais/optim_multiobjective.html#Roda_o_algoritmo_de_otimiza%C3%A7%C3%A3o) 
  
- - [Otimização Multiobjetivo: Exercício teórico e aplicação em portfolio de commodities (backtests)](https://rhozon.github.io/selecaodeprodutosnor/optim_multiobj_portfolio.html)
+ - [Otimização Multiobjetivo: Exercício teórico e aplicação em portfolio de commodities (backtests)](https://rhozon.github.io/tutoriais/optim_multiobj_portfolio.html)
 
- - [Otimização Multiobjetivo: Alocação de Risco em Portfólio com Evolução Diferencial](https://rhozon.github.io/selecaodeprodutosnor/Differential_Optimization_Portfolio.html)
+ - [Otimização Multiobjetivo: Alocação de Risco em Portfólio com Evolução Diferencial](https://rhozon.github.io/tutoriais/Differential_Optimization_Portfolio.html)
  
 
 </font>
@@ -866,7 +866,7 @@ $\Rightarrow$ Agradecimentos aos pesquisadores do [PPGEPS/PUCPR](https://www.puc
 
 - Meu perfil no [Google Scholar](https://scholar.google.com/citations?user=hPcIR9oAAAAJ&hl=en)
 - Meu [CV Lattes](http://lattes.cnpq.br/3532649625879285)
-- Meu [site com posts, tutoriais e artigos](https://rhozon.github.io/selecaodeprodutosnor/index.html) 
+- Meu [site com posts, tutoriais e artigos](https://rhozon.github.io/tutoriais/index.html) 
 - Meu [perfil no LinkeDin](https://www.linkedin.com/in/rodrigohermontozon/)
 
 :::
