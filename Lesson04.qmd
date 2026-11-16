@@ -32,33 +32,35 @@ That is an small Quarto document to follow the script provided:
 
 So far we have used softmax, SVC, and kNN models. Now we will create them again with the same 3-storey structure dataset but using hyperparameter tuning by randomized search. To that end, provide the following items:
 
-1. **Split your dataset into a) training/validation and b) test datasets** (e.g., 60/40% ratio split).
+1.  **Split your dataset into a) training/validation and b) test datasets** (e.g., 60/40% ratio split).
 
-2. **Use randomized search with repeated cross-validation for hyperparameter tuning.** Use the following parameters:
-   - **RepeatedKFold:**
-     - `n_splits = 5`
-     - `n_repeats = 50`
-   - **RandomizedSearchCV:**
-     - `n_iter = 100`
-     - `n_jobs = -1` (will use all your cores)
-     - `cv = (object you created with RepeatedKFold)`
-     - `scoring = (choose a performance metric for classification problems)`
-   - Suggestion: create a list of estimators and a list of dictionaries for `param_distributions`, as shown in the slides.
+2.  **Use randomized search with repeated cross-validation for hyperparameter tuning.** Use the following parameters:
 
-3. **Try to compare with the results obtained with the default configurations of each model constructor.**
+    -   **RepeatedKFold:**
+        -   `n_splits = 5`
+        -   `n_repeats = 50`
+    -   **RandomizedSearchCV:**
+        -   `n_iter = 100`
+        -   `n_jobs = -1` (will use all your cores)
+        -   `cv = (object you created with RepeatedKFold)`
+        -   `scoring = (choose a performance metric for classification problems)`
+    -   Suggestion: create a list of estimators and a list of dictionaries for `param_distributions`, as shown in the slides.
+
+3.  **Try to compare with the results obtained with the default configurations of each model constructor.**
 
 **Instructions**
 
-- Send me a link to your GitHub repository (free to register) with a Jupyter notebook that I can access
-  - Something like [This example notebook](https://github.com/helonayala/himl_read_data/blob/main/read_data.ipynb)
+-   Send me a link to your GitHub repository (free to register) with a Jupyter notebook that I can access
 
-- **Delivery**: Before the next meeting, by email with the subject [HIML]
+    -   Something like [This example notebook](https://github.com/helonayala/himl_read_data/blob/main/read_data.ipynb)
 
-- **Instructions**:
-  - Send a PDF file with the code when applicable
-  - If you need feedback, ask
-  - If you are late, try to submit as soon as possible
+-   **Delivery**: Before the next meeting, by email with the subject \[HIML\]
 
+-   **Instructions**:
+
+    -   Send a PDF file with the code when applicable
+    -   If you need feedback, ask
+    -   If you are late, try to submit as soon as possible
 :::
 
 ------------------------------------------------------------------------
@@ -68,28 +70,22 @@ So far we have used softmax, SVC, and kNN models. Now we will create them again 
 ------------------------------------------------------------------------
 
 ::: panel-tabset
-
 # Introduction {style="font-size:14pt;"}
 
 In this document, we explore the application of supervised learning techniques to a dataset obtained from a structural health monitoring experiment. The primary objective is to test and compare the performance of different classification models, namely Logistic Regression, Support Vector Machine (SVM), and k-Nearest Neighbors (kNN), on the given problem. The dataset comprises multiple channels of accelerometer readings and shaker force measurements, which are used to identify different structural conditions.
 
-The key steps involved in this analysis include:
-1. **Preprocessing the data:** This involves loading the dataset, reshaping the labels, and extracting features using autoregressive (AR) modeling and principal component analysis (PCA).
+The key steps involved in this analysis include: 1. **Preprocessing the data:** This involves loading the dataset, reshaping the labels, and extracting features using autoregressive (AR) modeling and principal component analysis (PCA).
 
-2. **Training and evaluating models:** We employ Logistic Regression, SVM, and kNN models with hyperparameter tuning to classify the structural conditions. We split the dataset into training and testing sets (60/40 split) and evaluate the models using accuracy, classification reports, and confusion matrices.
+2.  **Training and evaluating models:** We employ Logistic Regression, SVM, and kNN models with hyperparameter tuning to classify the structural conditions. We split the dataset into training and testing sets (60/40 split) and evaluate the models using accuracy, classification reports, and confusion matrices.
 
-3. **Comparison with default configurations:** We compare the performance of the models with and without hyperparameter tuning to understand the impact of the tuning process.
+3.  **Comparison with default configurations:** We compare the performance of the models with and without hyperparameter tuning to understand the impact of the tuning process.
 
 Through this document, we aim to demonstrate the effectiveness of different supervised learning techniques in identifying structural conditions based on sensor data.
-
-
 :::
 
 # Solution {style="font-size:14pt;"}
 
 ::: panel-tabset
-
-
 ## Python libs {style="font-size:14pt;"}
 
 ```{python}
@@ -124,7 +120,6 @@ from sklearn.model_selection import GridSearchCV
 warnings.filterwarnings('ignore', message='DataFrame is highly fragmented.')
 
 ```
-
 
 ## Loading data
 
@@ -182,58 +177,57 @@ print(df.info())
 
 ***Explanation of Dataset Contents***
 
-1. **Dataset Shape:**
+1.  **Dataset Shape:**
 
-   - `dataset.shape` returns `(8192, 5, 850)`, indicating the dataset has 8192 samples, 5 channels, and 850 cases.
+    -   `dataset.shape` returns `(8192, 5, 850)`, indicating the dataset has 8192 samples, 5 channels, and 850 cases.
 
-2. **Labels Shape:**
+2.  **Labels Shape:**
 
-   - `labels.shape` returns `(850,)`, indicating there are 850 labels corresponding to the 850 cases.
+    -   `labels.shape` returns `(850,)`, indicating there are 850 labels corresponding to the 850 cases.
 
-3. **Channels:**
+3.  **Channels:**
 
-   - `Ch1` (Shape: `(8192, 850)`): Represents the force measured by the load cell (shaker force).
-   
-   - `Ch2` (Shape: `(8192, 850)`): Represents the acceleration measured at the base of the structure.
-   
-   - `Ch3` (Shape: `(8192, 850)`): Represents the acceleration measured at the 1st floor of the structure.
-   
-   - `Ch4` (Shape: `(8192, 850)`): Represents the acceleration measured at the 2nd floor of the structure.
-   
-   - `Ch5` (Shape: `(8192, 850)`): Represents the acceleration measured at the 3rd floor of the structure.
+    -   `Ch1` (Shape: `(8192, 850)`): Represents the force measured by the load cell (shaker force).
 
-4. **DataFrame Overview:**
+    -   `Ch2` (Shape: `(8192, 850)`): Represents the acceleration measured at the base of the structure.
 
-   - A `pandas` DataFrame is created where each column represents one of the channels (Ch1 to Ch5) and the labels.
-   
-   - The `df.info()` function provides a concise summary of the DataFrame, including column names, non-null counts, and data types.
-   
-   - The `df.head()` function displays the first few rows of the DataFrame to give a preview of the data.
+    -   `Ch3` (Shape: `(8192, 850)`): Represents the acceleration measured at the 1st floor of the structure.
 
-5. **Data Visualization:**
+    -   `Ch4` (Shape: `(8192, 850)`): Represents the acceleration measured at the 2nd floor of the structure.
 
-   - The time vector `time` is created based on the number of samples (`N`) and the sampling time (`Ts`).
-   
-   - For the first two cases, the force data (Ch1) and acceleration data (Ch2 to Ch5) are plotted against time to provide a visual preview of the data.
+    -   `Ch5` (Shape: `(8192, 850)`): Represents the acceleration measured at the 3rd floor of the structure.
+
+4.  **DataFrame Overview:**
+
+    -   A `pandas` DataFrame is created where each column represents one of the channels (Ch1 to Ch5) and the labels.
+
+    -   The `df.info()` function provides a concise summary of the DataFrame, including column names, non-null counts, and data types.
+
+    -   The `df.head()` function displays the first few rows of the DataFrame to give a preview of the data.
+
+5.  **Data Visualization:**
+
+    -   The time vector `time` is created based on the number of samples (`N`) and the sampling time (`Ts`).
+
+    -   For the first two cases, the force data (Ch1) and acceleration data (Ch2 to Ch5) are plotted against time to provide a visual preview of the data.
 
 ***Detailed Description***
 
-- **Channels:**
+-   **Channels:**
 
-  - **Ch1 (Load Cell - Shaker Force):** This channel captures the force applied by the shaker to the structure. It is essential for understanding the input excitation.
-  
-  - **Ch2 (Accelerometer - Base):** This channel measures the acceleration at the base of the structure. It helps in understanding the base motion response.
-  
-  - **Ch3 (Accelerometer - 1st Floor):** This channel measures the acceleration at the 1st floor, providing insights into the structural response at this level.
-  
-  - **Ch4 (Accelerometer - 2nd Floor):** This channel measures the acceleration at the 2nd floor, which is useful for analyzing the dynamic behavior at this level.
-  
-  - **Ch5 (Accelerometer - 3rd Floor):** This channel measures the acceleration at the 3rd floor, giving information about the response at the top of the structure.
+    -   **Ch1 (Load Cell - Shaker Force):** This channel captures the force applied by the shaker to the structure. It is essential for understanding the input excitation.
 
-- **Labels:** 
+    -   **Ch2 (Accelerometer - Base):** This channel measures the acceleration at the base of the structure. It helps in understanding the base motion response.
 
-  - The `labels` array contains the labels for each case, which might represent different conditions or states of the structure during the experiments.
+    -   **Ch3 (Accelerometer - 1st Floor):** This channel measures the acceleration at the 1st floor, providing insights into the structural response at this level.
 
+    -   **Ch4 (Accelerometer - 2nd Floor):** This channel measures the acceleration at the 2nd floor, which is useful for analyzing the dynamic behavior at this level.
+
+    -   **Ch5 (Accelerometer - 3rd Floor):** This channel measures the acceleration at the 3rd floor, giving information about the response at the top of the structure.
+
+-   **Labels:**
+
+    -   The `labels` array contains the labels for each case, which might represent different conditions or states of the structure during the experiments.
 
 ## Obtaining features {style="font-size:14pt;"}
 
@@ -254,9 +248,7 @@ def extract_ar_features(channel_data, order):
   
 ```
 
-
 ***a. Extract AR features from channels 2 to 5***
-
 
 ```{python, fig.width=9, fig.height=4}
 
@@ -273,9 +265,7 @@ print(f"X1 shape: {X1.shape}")
 
 ```
 
-
 ***b. Apply PCA to reduce the dimensionality of X1***
-
 
 ```{python, fig.width=9, fig.height=4}
 
@@ -286,9 +276,7 @@ print(f"X2 shape: {X2.shape}")
 
 ```
 
-
-***c. Scale all features individually to the range [-1, 1]***
-
+***c. Scale all features individually to the range \[-1, 1\]***
 
 ```{python, fig.width=9, fig.height=4}
 
@@ -299,13 +287,9 @@ X2_scaled = scaler.fit_transform(X2)
 
 ```
 
-
 ## Splitting Data and Randomized Search CV for hyp. tunning {style="font-size:14pt;"}
 
-
 Splitting dataset in 60/20:
-
-
 
 ```{python}
 
@@ -433,7 +417,6 @@ pp.pprint(results_X2)
 
 ```
 
-
 ### Results Interpretation: {style="font-size:14pt;"}
 
 ### Justification for Logistic Regression: {style="font-size:14pt;"}
@@ -442,78 +425,66 @@ Logistic regression is a powerful statistical method used for binary and multicl
 
 ### Results for X1 (AR Features): {style="font-size:14pt;"}
 
-- **KNN**:
-  - **Accuracy**: 0.9882
-  - **Best Parameters**: {'n_neighbors': 1, 'weights': 'uniform'}
-  - **Report**: High precision, recall, and f1-score across all classes.
-  - **Confusion Matrix**: Minor misclassifications indicating strong performance.
-
-- **Logistic Regression**:
-  - **Accuracy**: 1.0000
-  - **Best Parameters**: {'C': 78.47599703514607}
-  - **Report and Confusion Matrix**: Perfect classification, no misclassifications.
-
-- **SVC**:
-  - **Accuracy**: 1.0000
-  - **Best Parameters**: {'C': 545.5594781168514, 'gamma': 29.763514416313132, 'kernel': 'linear'}
-  - **Report and Confusion Matrix**: Perfect classification, no misclassifications.
-
-- **Softmax**:
-  - **Accuracy**: 1.0000
-  - **Best Parameters**: {'C': 78.47599703514607}
-  - **Report and Confusion Matrix**: Perfect classification, no misclassifications.
+-   **KNN**:
+    -   **Accuracy**: 0.9882
+    -   **Best Parameters**: {'n_neighbors': 1, 'weights': 'uniform'}
+    -   **Report**: High precision, recall, and f1-score across all classes.
+    -   **Confusion Matrix**: Minor misclassifications indicating strong performance.
+-   **Logistic Regression**:
+    -   **Accuracy**: 1.0000
+    -   **Best Parameters**: {'C': 78.47599703514607}
+    -   **Report and Confusion Matrix**: Perfect classification, no misclassifications.
+-   **SVC**:
+    -   **Accuracy**: 1.0000
+    -   **Best Parameters**: {'C': 545.5594781168514, 'gamma': 29.763514416313132, 'kernel': 'linear'}
+    -   **Report and Confusion Matrix**: Perfect classification, no misclassifications.
+-   **Softmax**:
+    -   **Accuracy**: 1.0000
+    -   **Best Parameters**: {'C': 78.47599703514607}
+    -   **Report and Confusion Matrix**: Perfect classification, no misclassifications.
 
 ### Results for X2 (PCA Features): {style="font-size:14pt;"}
 
-- **KNN**:
-  - **Accuracy**: 0.9912
-  - **Best Parameters**: {'n_neighbors': 5, 'weights': 'distance'}
-  - **Report**: High precision, recall, and f1-score across all classes.
-  - **Confusion Matrix**: Minor misclassifications indicating strong performance.
-
-- **Logistic Regression**:
-  - **Accuracy**: 0.9912
-  - **Best Parameters**: {'C': 29.763514416313132}
-  - **Report and Confusion Matrix**: Minor misclassifications indicating strong performance.
-
-- **SVC**:
-  - **Accuracy**: 0.9971
-  - **Best Parameters**: {'C': 29.763514416313132, 'gamma': 0.08858667904100823, 'kernel': 'rbf'}
-  - **Report and Confusion Matrix**: Almost perfect classification with minimal misclassifications.
-
-- **Softmax**:
-  - **Accuracy**: 0.9912
-  - **Best Parameters**: {'C': 29.763514416313132}
-  - **Report and Confusion Matrix**: Minor misclassifications indicating strong performance.
+-   **KNN**:
+    -   **Accuracy**: 0.9912
+    -   **Best Parameters**: {'n_neighbors': 5, 'weights': 'distance'}
+    -   **Report**: High precision, recall, and f1-score across all classes.
+    -   **Confusion Matrix**: Minor misclassifications indicating strong performance.
+-   **Logistic Regression**:
+    -   **Accuracy**: 0.9912
+    -   **Best Parameters**: {'C': 29.763514416313132}
+    -   **Report and Confusion Matrix**: Minor misclassifications indicating strong performance.
+-   **SVC**:
+    -   **Accuracy**: 0.9971
+    -   **Best Parameters**: {'C': 29.763514416313132, 'gamma': 0.08858667904100823, 'kernel': 'rbf'}
+    -   **Report and Confusion Matrix**: Almost perfect classification with minimal misclassifications.
+-   **Softmax**:
+    -   **Accuracy**: 0.9912
+    -   **Best Parameters**: {'C': 29.763514416313132}
+    -   **Report and Confusion Matrix**: Minor misclassifications indicating strong performance.
 
 ### Conclusion: {style="font-size:14pt;"}
 
 The analysis demonstrates that all tested models (SVM, kNN, Logistic Regression, and Softmax) performed exceptionally well in classifying structural conditions based on the given dataset. Hyperparameter tuning was crucial in optimizing the performance of these models, particularly for SVM and kNN. Both AR and PCA features proved to be effective for this classification task, with slight variations in performance. SVC and Logistic Regression achieved near-perfect accuracy, showcasing their robustness in handling this type of data. Overall, the application of supervised learning techniques with hyperparameter tuning has shown great potential in identifying structural conditions accurately.
-
-
-
 :::
 
 # Conclusion {style="font-size:14pt;"}
 
 In this analysis, we applied supervised learning techniques to classify structural conditions using accelerometer and shaker force measurements. The main findings from our experiments include:
 
-1. **Model Performance:** All models performed exceptionally well with both AR and PCA features, achieving high accuracy scores. SVC and Logistic Regression, in particular, achieved perfect or near-perfect accuracy.
+1.  **Model Performance:** All models performed exceptionally well with both AR and PCA features, achieving high accuracy scores. SVC and Logistic Regression, in particular, achieved perfect or near-perfect accuracy.
 
-2. **Hyperparameter Tuning:** The hyperparameter tuning process using Randomized Search CV and RepeatedKFold was effective in finding optimal parameters, especially for SVC and kNN. This process significantly improved the model performance compared to the default configurations.
+2.  **Hyperparameter Tuning:** The hyperparameter tuning process using Randomized Search CV and RepeatedKFold was effective in finding optimal parameters, especially for SVC and kNN. This process significantly improved the model performance compared to the default configurations.
 
-3. **Feature Sets:** Both AR and PCA features proved to be effective for classification tasks, with slight variations in performance. PCA features resulted in reduced dimensionality while retaining most of the variance, which is beneficial for model training.
+3.  **Feature Sets:** Both AR and PCA features proved to be effective for classification tasks, with slight variations in performance. PCA features resulted in reduced dimensionality while retaining most of the variance, which is beneficial for model training.
 
 Overall, the supervised learning techniques, coupled with thorough hyperparameter tuning, demonstrated strong potential in accurately identifying structural conditions based on the provided dataset. Future work could explore additional feature extraction methods and more advanced models to further enhance classification performance.
-
-
-
 
 ------------------------------------------------------------------------
 
 # References {style="font-size:14pt;"}
 
-Hayala, H. V. H. ***04 supervised learning I***, _Lecture Notes_, In Machine Learning Class at Industrial and Systems Engineering Graduate Program (PPGEPS), Pontifical Catholic University of Paraná (PPGEPS/PUCPR), 2024. 
+Hayala, H. V. H. ***04 supervised learning I***, *Lecture Notes*, In Machine Learning Class at Industrial and Systems Engineering Graduate Program (PPGEPS), Pontifical Catholic University of Paraná (PPGEPS/PUCPR), 2024.
 
 Kuhn, 2016 (Chapter 4)
 
@@ -531,6 +502,3 @@ time_diff = datetime.now() - start_time
 print(f"Total Quarto document compiling time: {time_diff}")
 
 ```
-
-
-

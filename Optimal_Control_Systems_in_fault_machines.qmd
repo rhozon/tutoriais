@@ -17,7 +17,6 @@ start_time <- Sys.time()
 
 ```
 
-
 ```{css toc-content, echo = FALSE}
 
 #TOC {
@@ -45,22 +44,15 @@ knitr::opts_chunk$set(message = FALSE) # Remove all messages # of R outputs
 
 ```
 
-
-
-
-
-***
+------------------------------------------------------------------------
 
 # Intro
 
-***
-
+------------------------------------------------------------------------
 
 ## Abstract
 
-
 ## Optimal Control Theory vs Intelligent Control Systems vs ML
-
 
 **Optimal Control Theory:** This is a mathematical optimization method that deals with finding a control for a dynamical system over a period of time such that an objective function is optimized. It has numerous applications in both science and engineering. Traditional optimal control theory mainly deals with designing a control law for a system such that a certain optimality criterion is achieved.
 
@@ -70,13 +62,11 @@ knitr::opts_chunk$set(message = FALSE) # Remove all messages # of R outputs
 
 Now, let's look at the differences:
 
-_Optimal Control Theory vs Intelligent Control Systems:_ While optimal control theory is a mathematical approach to optimize the control of a system, intelligent control systems use artificial intelligence techniques to enhance the performance and adaptability of control systems. Optimal control theory usually requires a mathematical model of the system, while intelligent control systems can work with approximate or incomplete models.
+*Optimal Control Theory vs Intelligent Control Systems:* While optimal control theory is a mathematical approach to optimize the control of a system, intelligent control systems use artificial intelligence techniques to enhance the performance and adaptability of control systems. Optimal control theory usually requires a mathematical model of the system, while intelligent control systems can work with approximate or incomplete models.
 
-_Optimal Control Theory vs Machine Learning:_ Optimal control theory is a model-based approach that requires a complete and accurate model of the system. On the other hand, machine learning can work with incomplete or approximate models and can learn and improve over time based on data. Machine learning techniques can be used in control systems where the model of the system is not known or is too complex to be modeled mathematically.
+*Optimal Control Theory vs Machine Learning:* Optimal control theory is a model-based approach that requires a complete and accurate model of the system. On the other hand, machine learning can work with incomplete or approximate models and can learn and improve over time based on data. Machine learning techniques can be used in control systems where the model of the system is not known or is too complex to be modeled mathematically.
 
-_Intelligent Control Systems vs Machine Learning:_ Intelligent control systems use various artificial intelligence techniques, including machine learning, to control systems. Machine learning is a subset of the techniques used in intelligent control systems. While machine learning focuses on learning from data and improving decision-making, intelligent control systems focus on using these techniques to control a system.
-
-
+*Intelligent Control Systems vs Machine Learning:* Intelligent control systems use various artificial intelligence techniques, including machine learning, to control systems. Machine learning is a subset of the techniques used in intelligent control systems. While machine learning focuses on learning from data and improving decision-making, intelligent control systems focus on using these techniques to control a system.
 
 ## Log of failure machines
 
@@ -103,86 +93,15 @@ ts <- xts(data, order.by = time_index)
 
 ```
 
+ 
 
+ 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-&nbsp;
-
-&nbsp;
-
-
-
-***
+------------------------------------------------------------------------
 
 # References
 
-***
-
+------------------------------------------------------------------------
 
 Glover, F. (1986). ***Future paths for integer programming and links to artificial intelligence.*** This paper discusses the links between artificial intelligence and operations research, which includes optimal control theory. It also discusses the future of integer programming, which is a method used in optimal control theory. [PDF Link](http://leeds-faculty.colorado.edu/glover/TS%20-%20Future%20Paths%20for%20Integer%20Programming.pdf)
 
@@ -192,30 +111,19 @@ Hofmann, T. (1999). ***Probabilistic latent semantic indexing.*** <mark> *This p
 
 van Hateren, J. H., & Ruderman, D. L. (1998). ***Independent component analysis of natural image sequences yields spatio-temporal filters similar to simple cells in primary visual cortex.*** <mark> *This paper discusses the use of independent component analysis, a machine learning technique, in the analysis of natural image sequences.* </mark> [PDF Link](https://dl.acm.org/doi/pdf/10.1145/312624.312649)
 
+ 
 
+ 
 
-&nbsp;
-
-&nbsp;
-
-***
+------------------------------------------------------------------------
 
 ## R packages references
 
-***
+------------------------------------------------------------------------
 
+ 
 
-
-
-
-
-
-
-&nbsp;
-
-&nbsp;
-
-
+ 
 
 ```{r}
 
@@ -224,8 +132,3 @@ van Hateren, J. H., & Ruderman, D. L. (1998). ***Independent component analysis 
 Sys.time() - start_time 
 
 ```
-
-
-
-
-

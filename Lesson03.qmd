@@ -30,25 +30,25 @@ That is an small Quarto document to follow the script provided:
 
 **Take-home exercise**
 
-1. **Test SVM and kNN models for the problem discussed in the previous take-home exercise** (use the same pre-processing methods).
+1.  **Test SVM and kNN models for the problem discussed in the previous take-home exercise** (use the same pre-processing methods).
 
-2. **Try different combinations for the hyperparameters** (non-exhaustively for now, as we will learn how to create a set of models using cross-validation later).
+2.  **Try different combinations for the hyperparameters** (non-exhaustively for now, as we will learn how to create a set of models using cross-validation later).
 
-3. **Discuss how they compare to the linear model**.
-
+3.  **Discuss how they compare to the linear model**.
 
 **Instructions**
 
-- Send me a link to your GitHub repository (free to register) with a Jupyter notebook that I can access
-  - Something like [This example notebook](https://github.com/helonayala/himl_read_data/blob/main/read_data.ipynb)
+-   Send me a link to your GitHub repository (free to register) with a Jupyter notebook that I can access
 
-- **Delivery**: Before the next meeting, by email with the subject [HIML]
+    -   Something like [This example notebook](https://github.com/helonayala/himl_read_data/blob/main/read_data.ipynb)
 
-- **Instructions**:
-  - Send a PDF file with the code when applicable
-  - If you need feedback, ask
-  - If you are late, try to submit as soon as possible
+-   **Delivery**: Before the next meeting, by email with the subject \[HIML\]
 
+-   **Instructions**:
+
+    -   Send a PDF file with the code when applicable
+    -   If you need feedback, ask
+    -   If you are late, try to submit as soon as possible
 :::
 
 ------------------------------------------------------------------------
@@ -58,25 +58,18 @@ That is an small Quarto document to follow the script provided:
 ------------------------------------------------------------------------
 
 ::: panel-tabset
-
 # Introduction {style="font-size:14pt;"}
 
 In this document, we explore the application of supervised learning techniques to a dataset obtained from a structural health monitoring experiment. The primary objective is to test and compare the performance of different classification models, namely SVM (Support Vector Machine) and kNN (k-Nearest Neighbors), on the given problem. The dataset comprises multiple channels of accelerometer readings and shaker force measurements, which are used to identify different structural conditions.
 
-The key steps involved in this analysis include:
-1. **Preprocessing the data:** This involves loading the dataset, reshaping the labels, and extracting features using autoregressive (AR) modeling and principal component analysis (PCA).
-2. **Training and evaluating models:** We employ SVM and kNN models with hyperparameter tuning to classify the structural conditions. We split the dataset into training and testing sets (80/20 split) and evaluate the models using accuracy, classification reports, and confusion matrices.
-3. **Comparison with the linear model:** We compare the performance of the SVM and kNN models with a previously evaluated linear model (Softmax Linear Model) to understand their relative strengths and weaknesses.
+The key steps involved in this analysis include: 1. **Preprocessing the data:** This involves loading the dataset, reshaping the labels, and extracting features using autoregressive (AR) modeling and principal component analysis (PCA). 2. **Training and evaluating models:** We employ SVM and kNN models with hyperparameter tuning to classify the structural conditions. We split the dataset into training and testing sets (80/20 split) and evaluate the models using accuracy, classification reports, and confusion matrices. 3. **Comparison with the linear model:** We compare the performance of the SVM and kNN models with a previously evaluated linear model (Softmax Linear Model) to understand their relative strengths and weaknesses.
 
 Through this document, we aim to demonstrate the effectiveness of different supervised learning techniques in identifying structural conditions based on sensor data.
-
 :::
 
 # Solution {style="font-size:14pt;"}
 
 ::: panel-tabset
-
-
 ## Python libs
 
 ```{python}
@@ -108,7 +101,6 @@ from sklearn.svm import SVC
 from sklearn.model_selection import GridSearchCV
 
 ```
-
 
 ## Loading data
 
@@ -166,59 +158,57 @@ print(df.info())
 
 ***Explanation of Dataset Contents***
 
-1. **Dataset Shape:**
+1.  **Dataset Shape:**
 
-   - `dataset.shape` returns `(8192, 5, 850)`, indicating the dataset has 8192 samples, 5 channels, and 850 cases.
+    -   `dataset.shape` returns `(8192, 5, 850)`, indicating the dataset has 8192 samples, 5 channels, and 850 cases.
 
-2. **Labels Shape:**
+2.  **Labels Shape:**
 
-   - `labels.shape` returns `(850,)`, indicating there are 850 labels corresponding to the 850 cases.
+    -   `labels.shape` returns `(850,)`, indicating there are 850 labels corresponding to the 850 cases.
 
-3. **Channels:**
+3.  **Channels:**
 
-   - `Ch1` (Shape: `(8192, 850)`): Represents the force measured by the load cell (shaker force).
-   
-   - `Ch2` (Shape: `(8192, 850)`): Represents the acceleration measured at the base of the structure.
-   
-   - `Ch3` (Shape: `(8192, 850)`): Represents the acceleration measured at the 1st floor of the structure.
-   
-   - `Ch4` (Shape: `(8192, 850)`): Represents the acceleration measured at the 2nd floor of the structure.
-   
-   - `Ch5` (Shape: `(8192, 850)`): Represents the acceleration measured at the 3rd floor of the structure.
+    -   `Ch1` (Shape: `(8192, 850)`): Represents the force measured by the load cell (shaker force).
 
-4. **DataFrame Overview:**
+    -   `Ch2` (Shape: `(8192, 850)`): Represents the acceleration measured at the base of the structure.
 
-   - A `pandas` DataFrame is created where each column represents one of the channels (Ch1 to Ch5) and the labels.
-   
-   - The `df.info()` function provides a concise summary of the DataFrame, including column names, non-null counts, and data types.
-   
-   - The `df.head()` function displays the first few rows of the DataFrame to give a preview of the data.
+    -   `Ch3` (Shape: `(8192, 850)`): Represents the acceleration measured at the 1st floor of the structure.
 
-5. **Data Visualization:**
+    -   `Ch4` (Shape: `(8192, 850)`): Represents the acceleration measured at the 2nd floor of the structure.
 
-   - The time vector `time` is created based on the number of samples (`N`) and the sampling time (`Ts`).
-   
-   - For the first two cases, the force data (Ch1) and acceleration data (Ch2 to Ch5) are plotted against time to provide a visual preview of the data.
+    -   `Ch5` (Shape: `(8192, 850)`): Represents the acceleration measured at the 3rd floor of the structure.
+
+4.  **DataFrame Overview:**
+
+    -   A `pandas` DataFrame is created where each column represents one of the channels (Ch1 to Ch5) and the labels.
+
+    -   The `df.info()` function provides a concise summary of the DataFrame, including column names, non-null counts, and data types.
+
+    -   The `df.head()` function displays the first few rows of the DataFrame to give a preview of the data.
+
+5.  **Data Visualization:**
+
+    -   The time vector `time` is created based on the number of samples (`N`) and the sampling time (`Ts`).
+
+    -   For the first two cases, the force data (Ch1) and acceleration data (Ch2 to Ch5) are plotted against time to provide a visual preview of the data.
 
 ***Detailed Description***
 
-- **Channels:**
+-   **Channels:**
 
-  - **Ch1 (Load Cell - Shaker Force):** This channel captures the force applied by the shaker to the structure. It is essential for understanding the input excitation.
-  
-  - **Ch2 (Accelerometer - Base):** This channel measures the acceleration at the base of the structure. It helps in understanding the base motion response.
-  
-  - **Ch3 (Accelerometer - 1st Floor):** This channel measures the acceleration at the 1st floor, providing insights into the structural response at this level.
-  
-  - **Ch4 (Accelerometer - 2nd Floor):** This channel measures the acceleration at the 2nd floor, which is useful for analyzing the dynamic behavior at this level.
-  
-  - **Ch5 (Accelerometer - 3rd Floor):** This channel measures the acceleration at the 3rd floor, giving information about the response at the top of the structure.
+    -   **Ch1 (Load Cell - Shaker Force):** This channel captures the force applied by the shaker to the structure. It is essential for understanding the input excitation.
 
-- **Labels:** 
+    -   **Ch2 (Accelerometer - Base):** This channel measures the acceleration at the base of the structure. It helps in understanding the base motion response.
 
-  - The `labels` array contains the labels for each case, which might represent different conditions or states of the structure during the experiments.
+    -   **Ch3 (Accelerometer - 1st Floor):** This channel measures the acceleration at the 1st floor, providing insights into the structural response at this level.
 
+    -   **Ch4 (Accelerometer - 2nd Floor):** This channel measures the acceleration at the 2nd floor, which is useful for analyzing the dynamic behavior at this level.
 
+    -   **Ch5 (Accelerometer - 3rd Floor):** This channel measures the acceleration at the 3rd floor, giving information about the response at the top of the structure.
+
+-   **Labels:**
+
+    -   The `labels` array contains the labels for each case, which might represent different conditions or states of the structure during the experiments.
 
 ## Obtaining features
 
@@ -239,9 +229,7 @@ def extract_ar_features(channel_data, order):
   
 ```
 
-
 ***a. Extract AR features from channels 2 to 5***
-
 
 ```{python, fig.width=9, fig.height=4}
 
@@ -258,9 +246,7 @@ print(f"X1 shape: {X1.shape}")
 
 ```
 
-
 ***b. Apply PCA to reduce the dimensionality of X1***
-
 
 ```{python, fig.width=9, fig.height=4}
 
@@ -271,9 +257,7 @@ print(f"X2 shape: {X2.shape}")
 
 ```
 
-
-***c. Scale all features individually to the range [-1, 1]***
-
+***c. Scale all features individually to the range \[-1, 1\]***
 
 ```{python, fig.width=9, fig.height=4}
 
@@ -283,7 +267,6 @@ X1_scaled = scaler.fit_transform(X1)
 X2_scaled = scaler.fit_transform(X2)
 
 ```
-
 
 ***d. Visualize and compare X1 and X2***
 
@@ -323,12 +306,9 @@ fig_X2.show()
 
 ```
 
-
-
 ## Using SVM model
 
 First of all, we´ll define an function to run the SVM model at train x test and for our grid search, then we can set our 80/20 train x test splits:
-
 
 ```{python}
 
@@ -385,7 +365,6 @@ print(conf_matrix_X2)
 
 ```
 
-
 The results from our SVM model evaluations with both AR features (X1) and PCA features (X2) reveal impressive performance, achieving perfect classification accuracy. Here, we delve into the specifics of these results.
 
 ***SVM with AR Features (X1)***
@@ -401,12 +380,11 @@ Best parameters for SVM with AR features (X1): {'C': 100, 'gamma': 0.01, 'kernel
 
 The optimal hyperparameters for the SVM model using AR features (X1) were:
 
-- C = 100: This high value of the regularization parameter C indicates minimal regularization, allowing the model to fit closely to the training 
+-   C = 100: This high value of the regularization parameter C indicates minimal regularization, allowing the model to fit closely to the training
 
-- gamma = 0.01: A lower value of gamma results in a broader influence of each data point, leading to a smoother decision boundary.
+-   gamma = 0.01: A lower value of gamma results in a broader influence of each data point, leading to a smoother decision boundary.
 
-- kernel = 'rbf': The radial basis function (RBF) kernel, effective for capturing non-linear relationships.
-
+-   kernel = 'rbf': The radial basis function (RBF) kernel, effective for capturing non-linear relationships.
 
 Test accuracy:
 
@@ -415,7 +393,6 @@ Test accuracy:
 Test accuracy with AR features (X1): 1.0000
 
 ```
-
 
 The model achieved a perfect test accuracy, indicating flawless classification of all test samples.
 
@@ -440,7 +417,6 @@ weighted avg    1.00      1.00      1.00       170
 All precision, recall, and f1-score values are 1.00 for each class, demonstrating perfect classification performance.
 
 Confusion Matrix:
-
 
 ```{python}
 #| eval: false
@@ -475,11 +451,11 @@ Best parameters for SVM with PCA features (X2): {'C': 1, 'gamma': 1, 'kernel': '
 
 The optimal hyperparameters for the SVM model using PCA features (X2) were:
 
-- C = 1: A moderate value of C, balancing regularization and model complexity.
+-   C = 1: A moderate value of C, balancing regularization and model complexity.
 
-- gamma = 1: A higher gamma value, leading to more complex decision boundaries with localized influence.
+-   gamma = 1: A higher gamma value, leading to more complex decision boundaries with localized influence.
 
-- kernel = 'rbf': The RBF kernel.
+-   kernel = 'rbf': The RBF kernel.
 
 Test Accuracy:
 
@@ -510,7 +486,6 @@ weighted avg    1.00      1.00      1.00       170
 
 ```
 
-
 All precision, recall, and f1-score values are 1.00 for each class, demonstrating perfect classification performance.
 
 Confusion Matrix:
@@ -534,20 +509,17 @@ Confusion Matrix:
 
 ```
 
-
 The confusion matrix confirms that all samples were correctly classified into their respective classes.
 
 **Final Considerations**
 
 The SVM model demonstrated outstanding performance with both AR and PCA features, achieving perfect classification accuracy on the test set for both feature sets.
 
-- AR Features (X1): The model with AR features achieved a perfect test accuracy of 1.0000 with the best parameters being C = 100 and gamma = 0.01. The confusion matrix and classification report confirm flawless classification for all classes.
+-   AR Features (X1): The model with AR features achieved a perfect test accuracy of 1.0000 with the best parameters being C = 100 and gamma = 0.01. The confusion matrix and classification report confirm flawless classification for all classes.
 
-- PCA Features (X2): Similarly, the model with PCA features also achieved a perfect test accuracy of 1.0000 with the best parameters being C = 1 and gamma = 1. The confusion matrix and classification report also indicate flawless classification.
+-   PCA Features (X2): Similarly, the model with PCA features also achieved a perfect test accuracy of 1.0000 with the best parameters being C = 1 and gamma = 1. The confusion matrix and classification report also indicate flawless classification.
 
 These results suggest that both AR and PCA feature extraction methods are highly effective for this classification task. The perfect accuracy might indicate a potentially simpler decision boundary for the data, or it might highlight the effectiveness of the SVM model with RBF kernel in capturing the underlying patterns in the data. Further validation on different datasets or through cross-validation could provide additional insights into the robustness and generalizability of these models.
-
-
 
 ## Using Knn Model
 
@@ -585,8 +557,6 @@ print(conf_matrix_X1_knn)
 
 ```
 
-
-
 Then we can run for X2:
 
 ```{python}
@@ -606,11 +576,11 @@ Results
 
 Best Parameters:
 
-- n_neighbors = 3
+-   n_neighbors = 3
 
-- weights = 'distance'
+-   weights = 'distance'
 
-- Test Accuracy: 0.9941
+-   Test Accuracy: 0.9941
 
 Classification Report:
 
@@ -672,11 +642,11 @@ Confusion Matrix:
 
 Best Parameters:
 
-- n_neighbors = 3
+-   n_neighbors = 3
 
-- weights = 'distance'
+-   weights = 'distance'
 
-- Test Accuracy: 1.0000
+-   Test Accuracy: 1.0000
 
 Classification Report:
 
@@ -733,19 +703,15 @@ Confusion Matrix
 
 ```
 
-
 **Final Considerations**
 
-- Both kNN models with AR features (X1) and PCA features (X2) performed exceptionally well.
+-   Both kNN models with AR features (X1) and PCA features (X2) performed exceptionally well.
 
-- kNN with AR Features (X1) achieved a test accuracy of 0.9941, with near-perfect classification metrics for all classes. The confusion matrix shows that almost all samples were correctly classified, with very few misclassifications.
+-   kNN with AR Features (X1) achieved a test accuracy of 0.9941, with near-perfect classification metrics for all classes. The confusion matrix shows that almost all samples were correctly classified, with very few misclassifications.
 
-- kNN with PCA Features (X2) achieved a perfect test accuracy of 1.0000, indicating flawless classification. The confusion matrix confirms that all samples were classified correctly without any errors.
-
+-   kNN with PCA Features (X2) achieved a perfect test accuracy of 1.0000, indicating flawless classification. The confusion matrix confirms that all samples were classified correctly without any errors.
 
 The kNN model demonstrated excellent performance for both AR and PCA features, achieving high classification accuracy on the test set for both feature sets. The optimal parameters for both feature sets were n_neighbors = 3 and weights = 'distance', which indicates that weighting the distance between neighbors improves classification performance. These results suggest that kNN is a robust classifier for this type of data, and both AR and PCA feature extraction methods are effective for achieving high classification accuracy.
-
-
 
 ## Comparision to the linear model
 
@@ -753,11 +719,11 @@ The kNN model demonstrated excellent performance for both AR and PCA features, a
 
 The linear model (Softmax Linear Model) was previously evaluated with both AR features (X1) and PCA features (X2). The results were as follows:
 
-- **Linear Model with AR Features (X1):**
-  - **Cross-Validation Accuracy:** 0.9894 ± 0.0184
-  - **Test Accuracy:** 1.0000
-  - **Classification Report:**
-  
+-   **Linear Model with AR Features (X1):**
+    -   **Cross-Validation Accuracy:** 0.9894 ± 0.0184
+    -   **Test Accuracy:** 1.0000
+    -   **Classification Report:**
+
 ```{python}
 #| eval: false
                   precision    recall  f1-score   support
@@ -806,12 +772,11 @@ The linear model (Softmax Linear Model) was previously evaluated with both AR fe
     
 ```
 
+-   **Linear Model with PCA Features (X2):**
+    -   **Cross-Validation Accuracy:** 0.9741 ± 0.0319
+    -   **Test Accuracy:** 0.9882
+    -   **Classification Report:**
 
-- **Linear Model with PCA Features (X2):**
-  - **Cross-Validation Accuracy:** 0.9741 ± 0.0319
-  - **Test Accuracy:** 0.9882
-  - **Classification Report:**
-  
 ```{python}
 #| eval: false
 
@@ -860,30 +825,30 @@ The linear model (Softmax Linear Model) was previously evaluated with both AR fe
      [ 0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0 13]]
 
 ```
-  
-  
+
 ***Comparison with kNN and SVM Models***
 
-1. **Accuracy:**
+1.  **Accuracy:**
 
-   - The linear model achieved perfect test accuracy with AR features (X1) and near-perfect accuracy with PCA features (X2). 
-   - The kNN model showed a test accuracy of 0.9941 with AR features and 1.0000 with PCA features.
-   - The SVM model also achieved perfect test accuracy for both AR and PCA features.
+    -   The linear model achieved perfect test accuracy with AR features (X1) and near-perfect accuracy with PCA features (X2).
+    -   The kNN model showed a test accuracy of 0.9941 with AR features and 1.0000 with PCA features.
+    -   The SVM model also achieved perfect test accuracy for both AR and PCA features.
 
-2. **Consistency:**
-   - Both kNN and SVM models demonstrated consistent performance across different feature sets.
-   - The linear model had a slightly lower performance with PCA features compared to AR features, as indicated by the slight drop in test accuracy and cross-validation accuracy.
+2.  **Consistency:**
 
-3. **Hyperparameters:**
+    -   Both kNN and SVM models demonstrated consistent performance across different feature sets.
+    -   The linear model had a slightly lower performance with PCA features compared to AR features, as indicated by the slight drop in test accuracy and cross-validation accuracy.
 
-   - The kNN model with the best performance used `n_neighbors = 3` and `weights = 'distance'`.
-   - The SVM model with the best performance used `C = 100` and `gamma = 0.01` for AR features, and `C = 1` and `gamma = 1` for PCA features.
-   - The linear model did not require extensive hyperparameter tuning as it was based on logistic regression.
+3.  **Hyperparameters:**
 
-4. **Confusion Matrix and Classification Report:**
+    -   The kNN model with the best performance used `n_neighbors = 3` and `weights = 'distance'`.
+    -   The SVM model with the best performance used `C = 100` and `gamma = 0.01` for AR features, and `C = 1` and `gamma = 1` for PCA features.
+    -   The linear model did not require extensive hyperparameter tuning as it was based on logistic regression.
 
-   - All models showed high precision, recall, and f1-scores, indicating their ability to correctly classify samples with minimal errors.
-   - The confusion matrices for all models showed minimal to no misclassifications, highlighting their robustness and reliability.
+4.  **Confusion Matrix and Classification Report:**
+
+    -   All models showed high precision, recall, and f1-scores, indicating their ability to correctly classify samples with minimal errors.
+    -   The confusion matrices for all models showed minimal to no misclassifications, highlighting their robustness and reliability.
 
 ***Conclusion***
 
@@ -892,18 +857,17 @@ Both the kNN and SVM models outperformed the linear model in terms of consistenc
 The linear model performed exceptionally well with AR features, achieving perfect test accuracy. However, it showed a slight drop in performance with PCA features, indicating potential room for improvement with more complex non-linear models.
 
 Overall, both kNN and SVM models provide strong alternatives to the linear model, especially when dealing with high-dimensional data and complex patterns. The choice between these models can be based on specific requirements, computational resources, and the nature of the dataset.
-  
 :::
 
 # Conclusion {style="font-size:14pt;"}
 
 The analysis and results presented in this document provide a comprehensive comparison of the performance of SVM, kNN, and linear models on the structural health monitoring dataset.
 
-1. **SVM Model:** The SVM model achieved perfect classification accuracy with both AR features (X1) and PCA features (X2). The optimal hyperparameters for the SVM model were found to be different for AR and PCA features, indicating the need for careful tuning based on the feature set used. The SVM model demonstrated its strong generalization capability and robustness in handling high-dimensional data.
+1.  **SVM Model:** The SVM model achieved perfect classification accuracy with both AR features (X1) and PCA features (X2). The optimal hyperparameters for the SVM model were found to be different for AR and PCA features, indicating the need for careful tuning based on the feature set used. The SVM model demonstrated its strong generalization capability and robustness in handling high-dimensional data.
 
-2. **kNN Model:** The kNN model also performed exceptionally well, achieving near-perfect accuracy with AR features and perfect accuracy with PCA features. The model with `n_neighbors = 3` and `weights = 'distance'` showed the best performance, highlighting the importance of considering the distance between neighbors in the classification task.
+2.  **kNN Model:** The kNN model also performed exceptionally well, achieving near-perfect accuracy with AR features and perfect accuracy with PCA features. The model with `n_neighbors = 3` and `weights = 'distance'` showed the best performance, highlighting the importance of considering the distance between neighbors in the classification task.
 
-3. **Linear Model:** The linear model (Softmax Linear Model) showed excellent performance with AR features, achieving perfect accuracy. However, its performance slightly dropped with PCA features, indicating that more complex, non-linear models like SVM and kNN might be better suited for such tasks.
+3.  **Linear Model:** The linear model (Softmax Linear Model) showed excellent performance with AR features, achieving perfect accuracy. However, its performance slightly dropped with PCA features, indicating that more complex, non-linear models like SVM and kNN might be better suited for such tasks.
 
 In conclusion, both SVM and kNN models provide strong alternatives to the linear model, especially when dealing with high-dimensional data and complex patterns. The choice between these models can be based on specific requirements, computational resources, and the nature of the dataset. The results suggest that feature extraction methods like AR and PCA are effective in capturing the underlying patterns in the data, enabling high classification accuracy across different models.
 
@@ -911,7 +875,7 @@ In conclusion, both SVM and kNN models provide strong alternatives to the linear
 
 # References {style="font-size:14pt;"}
 
-Hayala, H. V. H. ***03 supervised learning I***, _Lecture Notes_, In Machine Learning Class at Industrial and Systems Engineering Graduate Program (PPGEPS), Pontifical Catholic University of Paraná (PPGEPS/PUCPR), 2024. 
+Hayala, H. V. H. ***03 supervised learning I***, *Lecture Notes*, In Machine Learning Class at Industrial and Systems Engineering Graduate Program (PPGEPS), Pontifical Catholic University of Paraná (PPGEPS/PUCPR), 2024.
 
 ```{python}
 
@@ -923,6 +887,3 @@ time_diff = datetime.now() - start_time
 print(f"Total Quarto document compiling time: {time_diff}")
 
 ```
-
-
-

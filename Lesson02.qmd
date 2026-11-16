@@ -34,46 +34,50 @@ That is an small Quarto document to follow the script provided:
 
 Links:
 
-- [SBA Article](https://www.sba.org.br/open_journal_systems/index.php/sbai/article/view/2767) (link isn’t working)
+-   [SBA Article](https://www.sba.org.br/open_journal_systems/index.php/sbai/article/view/2767) (link isn’t working)
 
-- [Wiley Online Library](https://onlinelibrary.wiley.com/doi/epdf/10.1111/j.1467-8667.2010.00685.x) (section 2 – pdf sent in whatsapp group)
+-   [Wiley Online Library](https://onlinelibrary.wiley.com/doi/epdf/10.1111/j.1467-8667.2010.00685.x) (section 2 – pdf sent in whatsapp group)
 
 **2. A script is available at the link below for loading and plotting the data**
 
-- [GitHub Script](https://github.com/helonayala/himl_read_data)
+-   [GitHub Script](https://github.com/helonayala/himl_read_data)
 
 **3. Create a Jupyter notebook and implement the feature extraction and models detailed in the next slide**
 
 **4. Obtain features**
 
-- **a. With AR models of each channel**
-  - Channels 2-5, concatenating each AR model coefficient of each channel (model order = 30)
-  - `X1` will have 850 rows and 30*4=120 columns
+-   **a. With AR models of each channel**
 
-- **b. PCA of the matrix built in 4.a.a**
-  - `X2` will have 850 rows and << 120 columns after dimensionality reduction
+    -   Channels 2-5, concatenating each AR model coefficient of each channel (model order = 30)
+    -   `X1` will have 850 rows and 30\*4=120 columns
 
-- **c. Scale all features individually in, for example, [-1,1]**
+-   **b. PCA of the matrix built in 4.a.a**
 
-- **d. Visualize and compare `X1` and `X2`**
-  - See code in the "Plotting multidimensional spaces" section
+    -   `X2` will have 850 rows and \<\< 120 columns after dimensionality reduction
+
+-   **c. Scale all features individually in, for example, \[-1,1\]**
+
+-   **d. Visualize and compare `X1` and `X2`**
+
+    -   See code in the "Plotting multidimensional spaces" section
 
 **5. Use a Softmax linear model and test each of the feature matrices you built (`X1`, `X2`)**
 
-- Take the time to compare each of the feature extraction methods
+-   Take the time to compare each of the feature extraction methods
 
 **Instructions**
 
-- Send me a link to your GitHub repository (free to register) with a Jupyter notebook that I can access
-  - Something like [This example notebook](https://github.com/helonayala/himl_read_data/blob/main/read_data.ipynb)
+-   Send me a link to your GitHub repository (free to register) with a Jupyter notebook that I can access
 
-- **Delivery**: Before the next meeting, by email with the subject [HIML]
+    -   Something like [This example notebook](https://github.com/helonayala/himl_read_data/blob/main/read_data.ipynb)
 
-- **Instructions**:
-  - Send a PDF file with the code when applicable
-  - If you need feedback, ask
-  - If you are late, try to submit as soon as possible
+-   **Delivery**: Before the next meeting, by email with the subject \[HIML\]
 
+-   **Instructions**:
+
+    -   Send a PDF file with the code when applicable
+    -   If you need feedback, ask
+    -   If you are late, try to submit as soon as possible
 :::
 
 ------------------------------------------------------------------------
@@ -83,7 +87,6 @@ Links:
 ------------------------------------------------------------------------
 
 ::: panel-tabset
-
 # Introduction {style="font-size:14pt;"}
 
 Structural health monitoring (SHM) is crucial for ensuring the safety and reliability of engineering structures. The advent of the Internet of Things (IoT) has enabled distributed measurement and computation, which facilitates the implementation of SHM systems. This take-home exercise focuses on feature extraction and linear models for SHM, based on two key papers that explore different methodologies.
@@ -106,15 +109,15 @@ The paper addresses structural health monitoring (SHM) in the context of the Int
 
 **Key Points:**
 
-- **Objective:** To find the best compromise between model accuracy and the computational resources needed for embedded SHM solutions.
-  
-- **Methodology:** Utilizes AR models for feature extraction, followed by dimensionality reduction through Principal Component Analysis (PCA). The Monte Carlo hold-out cross-validation strategy is used to ensure the validity of the results.
+-   **Objective:** To find the best compromise between model accuracy and the computational resources needed for embedded SHM solutions.
 
-- **Results:** Applying PCA resulted in a significant reduction in model size (27.15%) with minimal loss in accuracy (1.64%).
+-   **Methodology:** Utilizes AR models for feature extraction, followed by dimensionality reduction through Principal Component Analysis (PCA). The Monte Carlo hold-out cross-validation strategy is used to ensure the validity of the results.
 
-- **Relevance to Exercise:** This paper provides the basis for using AR and PCA as methods for feature extraction and reduction. The methodology can be applied in the exercise to create effective and reduced feature sets for machine learning models.
+-   **Results:** Applying PCA resulted in a significant reduction in model size (27.15%) with minimal loss in accuracy (1.64%).
 
----
+-   **Relevance to Exercise:** This paper provides the basis for using AR and PCA as methods for feature extraction and reduction. The methodology can be applied in the exercise to create effective and reduced feature sets for machine learning models.
+
+------------------------------------------------------------------------
 
 **2. Paper: "Machine learning algorithms for damage detection under operational and environmental variability"**
 
@@ -126,21 +129,18 @@ The paper explores the application of machine learning algorithms to detect stru
 
 **Key Points:**
 
-- **Objective:** To identify structural damage under operational and environmental variability by comparing different machine learning algorithms.
+-   **Objective:** To identify structural damage under operational and environmental variability by comparing different machine learning algorithms.
 
-- **Methodology:** Four main feature extraction methods are used: Autoassociative Neural Network (AANN), Factor Analysis (FA), Mahalanobis Squared Distance (MSD), and Principal Component Analysis (PCA). Classification methods include Support Vector Machines (SVM).
+-   **Methodology:** Four main feature extraction methods are used: Autoassociative Neural Network (AANN), Factor Analysis (FA), Mahalanobis Squared Distance (MSD), and Principal Component Analysis (PCA). Classification methods include Support Vector Machines (SVM).
 
-- **Results:** The MSD-based algorithm showed the best overall performance with the lowest Type I and II error rates.
+-   **Results:** The MSD-based algorithm showed the best overall performance with the lowest Type I and II error rates.
 
-- **Relevance to Exercise:** This paper provides insights into the effectiveness of different machine learning algorithms for damage detection. The feature extraction methods (especially PCA) and classification techniques can be applied to the exercise to improve model accuracy.
-
+-   **Relevance to Exercise:** This paper provides insights into the effectiveness of different machine learning algorithms for damage detection. The feature extraction methods (especially PCA) and classification techniques can be applied to the exercise to improve model accuracy.
 :::
 
 # Solution {style="font-size:14pt;"}
 
 ::: panel-tabset
-
-
 ## Python libs
 
 ```{python}
@@ -169,7 +169,6 @@ import plotly.express as px
 import warnings
 
 ```
-
 
 ## Loading data
 
@@ -227,58 +226,57 @@ print(df.info())
 
 ***Explanation of Dataset Contents***
 
-1. **Dataset Shape:**
+1.  **Dataset Shape:**
 
-   - `dataset.shape` returns `(8192, 5, 850)`, indicating the dataset has 8192 samples, 5 channels, and 850 cases.
+    -   `dataset.shape` returns `(8192, 5, 850)`, indicating the dataset has 8192 samples, 5 channels, and 850 cases.
 
-2. **Labels Shape:**
+2.  **Labels Shape:**
 
-   - `labels.shape` returns `(850,)`, indicating there are 850 labels corresponding to the 850 cases.
+    -   `labels.shape` returns `(850,)`, indicating there are 850 labels corresponding to the 850 cases.
 
-3. **Channels:**
+3.  **Channels:**
 
-   - `Ch1` (Shape: `(8192, 850)`): Represents the force measured by the load cell (shaker force).
-   
-   - `Ch2` (Shape: `(8192, 850)`): Represents the acceleration measured at the base of the structure.
-   
-   - `Ch3` (Shape: `(8192, 850)`): Represents the acceleration measured at the 1st floor of the structure.
-   
-   - `Ch4` (Shape: `(8192, 850)`): Represents the acceleration measured at the 2nd floor of the structure.
-   
-   - `Ch5` (Shape: `(8192, 850)`): Represents the acceleration measured at the 3rd floor of the structure.
+    -   `Ch1` (Shape: `(8192, 850)`): Represents the force measured by the load cell (shaker force).
 
-4. **DataFrame Overview:**
+    -   `Ch2` (Shape: `(8192, 850)`): Represents the acceleration measured at the base of the structure.
 
-   - A `pandas` DataFrame is created where each column represents one of the channels (Ch1 to Ch5) and the labels.
-   
-   - The `df.info()` function provides a concise summary of the DataFrame, including column names, non-null counts, and data types.
-   
-   - The `df.head()` function displays the first few rows of the DataFrame to give a preview of the data.
+    -   `Ch3` (Shape: `(8192, 850)`): Represents the acceleration measured at the 1st floor of the structure.
 
-5. **Data Visualization:**
+    -   `Ch4` (Shape: `(8192, 850)`): Represents the acceleration measured at the 2nd floor of the structure.
 
-   - The time vector `time` is created based on the number of samples (`N`) and the sampling time (`Ts`).
-   
-   - For the first two cases, the force data (Ch1) and acceleration data (Ch2 to Ch5) are plotted against time to provide a visual preview of the data.
+    -   `Ch5` (Shape: `(8192, 850)`): Represents the acceleration measured at the 3rd floor of the structure.
+
+4.  **DataFrame Overview:**
+
+    -   A `pandas` DataFrame is created where each column represents one of the channels (Ch1 to Ch5) and the labels.
+
+    -   The `df.info()` function provides a concise summary of the DataFrame, including column names, non-null counts, and data types.
+
+    -   The `df.head()` function displays the first few rows of the DataFrame to give a preview of the data.
+
+5.  **Data Visualization:**
+
+    -   The time vector `time` is created based on the number of samples (`N`) and the sampling time (`Ts`).
+
+    -   For the first two cases, the force data (Ch1) and acceleration data (Ch2 to Ch5) are plotted against time to provide a visual preview of the data.
 
 ***Detailed Description***
 
-- **Channels:**
+-   **Channels:**
 
-  - **Ch1 (Load Cell - Shaker Force):** This channel captures the force applied by the shaker to the structure. It is essential for understanding the input excitation.
-  
-  - **Ch2 (Accelerometer - Base):** This channel measures the acceleration at the base of the structure. It helps in understanding the base motion response.
-  
-  - **Ch3 (Accelerometer - 1st Floor):** This channel measures the acceleration at the 1st floor, providing insights into the structural response at this level.
-  
-  - **Ch4 (Accelerometer - 2nd Floor):** This channel measures the acceleration at the 2nd floor, which is useful for analyzing the dynamic behavior at this level.
-  
-  - **Ch5 (Accelerometer - 3rd Floor):** This channel measures the acceleration at the 3rd floor, giving information about the response at the top of the structure.
+    -   **Ch1 (Load Cell - Shaker Force):** This channel captures the force applied by the shaker to the structure. It is essential for understanding the input excitation.
 
-- **Labels:** 
+    -   **Ch2 (Accelerometer - Base):** This channel measures the acceleration at the base of the structure. It helps in understanding the base motion response.
 
-  - The `labels` array contains the labels for each case, which might represent different conditions or states of the structure during the experiments.
+    -   **Ch3 (Accelerometer - 1st Floor):** This channel measures the acceleration at the 1st floor, providing insights into the structural response at this level.
 
+    -   **Ch4 (Accelerometer - 2nd Floor):** This channel measures the acceleration at the 2nd floor, which is useful for analyzing the dynamic behavior at this level.
+
+    -   **Ch5 (Accelerometer - 3rd Floor):** This channel measures the acceleration at the 3rd floor, giving information about the response at the top of the structure.
+
+-   **Labels:**
+
+    -   The `labels` array contains the labels for each case, which might represent different conditions or states of the structure during the experiments.
 
 We are just plot a preview of the data for the first two cases:
 
@@ -317,8 +315,6 @@ for case in np.array([0, 1]):
 
 ```
 
-
-
 ## Obtaining features
 
 ```{python, fig.width=9, fig.height=4}
@@ -338,9 +334,7 @@ def extract_ar_features(channel_data, order):
   
 ```
 
-
 ***a. Extract AR features from channels 2 to 5***
-
 
 ```{python, fig.width=9, fig.height=4}
 
@@ -357,9 +351,7 @@ print(f"X1 shape: {X1.shape}")
 
 ```
 
-
 ***b. Apply PCA to reduce the dimensionality of X1***
-
 
 ```{python, fig.width=9, fig.height=4}
 
@@ -370,9 +362,7 @@ print(f"X2 shape: {X2.shape}")
 
 ```
 
-
-***c. Scale all features individually to the range [-1, 1]***
-
+***c. Scale all features individually to the range \[-1, 1\]***
 
 ```{python, fig.width=9, fig.height=4}
 
@@ -382,7 +372,6 @@ X1_scaled = scaler.fit_transform(X1)
 X2_scaled = scaler.fit_transform(X2)
 
 ```
-
 
 ***d. Visualize and compare X1 and X2***
 
@@ -422,8 +411,6 @@ fig_X2.show()
 
 ```
 
-
-
 ## Using a softmax linear model
 
 The softmax linear model, also known as multinomial logistic regression, was used to classify the data. The dataset was split into training and testing sets with an 80/20 ratio. The following steps and results were obtained:
@@ -442,7 +429,7 @@ X2_train, X2_test, y_train, y_test = train_test_split(X2_scaled, labels, test_si
 
 **Model Initialization and Evaluation**
 
-Then, we initialized the softmax model and evaluated it using cross-validation and test accuracy for both feature sets (``X1`` and ``X2``):
+Then, we initialized the softmax model and evaluated it using cross-validation and test accuracy for both feature sets (`X1` and `X2`):
 
 ```{python}
 
@@ -478,21 +465,19 @@ print(confusion_matrix(y_test, y_pred_X2))
 
 ```
 
-
 **Results**
 
 AR Features (X1):
 
- - Cross-validation accuracy: 0.9894 ± 0.0184
+-   Cross-validation accuracy: 0.9894 ± 0.0184
 
- - Test accuracy: 1.0000
+-   Test accuracy: 1.0000
 
 PCA Features (X2):
 
- - Cross-validation accuracy: 0.9741 ± 0.0319
+-   Cross-validation accuracy: 0.9741 ± 0.0319
 
- - Test accuracy: 0.9882
- 
+-   Test accuracy: 0.9882
 
 The softmax linear model performed exceptionally well on the dataset, achieving perfect accuracy with AR features (X1) and near-perfect accuracy with PCA features (X2).
 
@@ -501,8 +486,6 @@ AR Features (X1): The model achieved a test accuracy of 1.0000, with perfect pre
 PCA Features (X2): The model achieved a test accuracy of 0.9882, with high precision, recall, and f1-scores for all classes. This indicates that the PCA features are also highly effective, though slightly less so than the AR features.
 
 The confusion matrices show that the model correctly classified nearly all instances in the test set. These results suggest that both feature extraction methods are valid and useful, with AR features providing a slight edge in accuracy. Further investigation with different models or regularization techniques could help confirm these findings and ensure robustness.
-
-
 :::
 
 # Conclusion {style="font-size:14pt;"}
@@ -515,12 +498,11 @@ The confusion matrices and classification reports further confirmed the model's 
 
 Overall, this exercise demonstrated the importance of feature extraction in machine learning for SHM and showcased the effectiveness of AR and PCA methods. Future work could involve exploring additional models, incorporating regularization techniques, and testing on different datasets to further validate the findings and enhance the model's generalizability.
 
-
 ------------------------------------------------------------------------
 
 # References {style="font-size:14pt;"}
 
-Hayala, H. V. H. ***02 feature extraction and linear models HIML***, _Lecture Notes_, In Machine Learning Class at Industrial and Systems Engineering Graduate Program (PPGEPS), Pontifical Catholic University of Paraná (PPGEPS/PUCPR), 2024. 
+Hayala, H. V. H. ***02 feature extraction and linear models HIML***, *Lecture Notes*, In Machine Learning Class at Industrial and Systems Engineering Graduate Program (PPGEPS), Pontifical Catholic University of Paraná (PPGEPS/PUCPR), 2024.
 
 ```{python}
 
@@ -532,6 +514,3 @@ time_diff = datetime.now() - start_time
 print(f"Total Quarto document compiling time: {time_diff}")
 
 ```
-
-
-

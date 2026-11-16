@@ -13,6 +13,10 @@ output:
 
 ```{r}
 
+#chooseCRANmirror(graphics = FALSE, ind = 1)
+#options(repos = c(CRAN = "https://cran.rstudio.com"))
+#update.packages(ask = FALSE)
+
 start_time <- Sys.time()
 #start_time
 
