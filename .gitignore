@@ -1,2 +1,7 @@
-nul 
+nul
 .Rproj.user
+
+/.quarto/
+
+# Dados grandes demais para o GitHub (limite de 100 MB)
+/data3SS2009.mat
